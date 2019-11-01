@@ -1,4 +1,4 @@
-package com.example.thingsflowjava;
+package com.example.thingsflowjava.detail;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.widget.TextView;
 
+import com.example.thingsflowjava.R;
 import com.example.thingsflowjava.data.DummyData;
 import com.example.thingsflowjava.main.MainActivity;
 
@@ -24,13 +25,12 @@ public class DetailInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_info);
 
-        int id = getIntent().getIntExtra("id", -1);
         int position = getIntent().getIntExtra("position", -1);
 
         ActionBar actionBar = getSupportActionBar();
 
         if(actionBar != null) {
-            actionBar.setTitle("#" + id);
+            actionBar.setTitle("#" + DummyData.dummyList.get(position).id);
         }
 
         body = findViewById(R.id.detail_tv_body);

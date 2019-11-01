@@ -22,19 +22,23 @@ import com.example.thingsflowjava.data.DummyData;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView test;
+    private TextView title;
     private RecyclerView rcv;
     private Retrofit retrofit;
     private MainListAdapter adapter;
 
     private String baseUrl = "https://api.github.com";
+    private String api = "repos/google/dagger/issues";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        title = findViewById(R.id.main_tv_title);
         rcv = findViewById(R.id.main_rcv_items);
+
+        title.setText("google / dagger");
         adapter = new MainListAdapter();
 
         rcv.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));

@@ -1,18 +1,16 @@
 package com.example.thingsflowjava.main;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.thingsflowjava.DetailInfoActivity;
+import com.example.thingsflowjava.detail.DetailInfoActivity;
 import com.example.thingsflowjava.R;
 import com.example.thingsflowjava.api.Item;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -33,11 +31,17 @@ public class MainListAdapter extends RecyclerView.Adapter<MainViewHolder> {
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), DetailInfoActivity.class);
+                Intent intent;
 
-                int position = viewHolder.getAdapterPosition();
-                intent.putExtra("id", itemList.get(position).id);
-                intent.putExtra("position", position);
+                if(viewHolder.getAdapterPosition() == 4) {
+                    String url =  "https://thingsflow.com/ko/home";
+                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                } else {
+                    intent = new Intent(v.getContext(), DetailInfoActivity.class);
+
+                    int position = viewHolder.getAdapterPosition();
+                    intent.putExtra("position", position);
+                }
 
                 v.getContext().startActivity(intent);
             }
@@ -48,7 +52,7 @@ public class MainListAdapter extends RecyclerView.Adapter<MainViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MainViewHolder holder, int position) {
-        holder.onBind(itemList.get(position));
+        holder.onBind(itemList.get(position), position);
     }
 
     @Override
