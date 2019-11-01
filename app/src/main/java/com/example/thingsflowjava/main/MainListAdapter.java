@@ -34,7 +34,12 @@ public class MainListAdapter extends RecyclerView.Adapter<MainViewHolder> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), DetailInfoActivity.class);
-                intent.putExtra("id", itemList.get(viewHolder.getAdapterPosition()).id);
+
+                int position = viewHolder.getAdapterPosition();
+                intent.putExtra("id", itemList.get(position).id);
+                intent.putExtra("position", position);
+
+                v.getContext().startActivity(intent);
             }
         });
 

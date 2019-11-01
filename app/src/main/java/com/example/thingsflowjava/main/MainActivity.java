@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.example.thingsflowjava.R;
 import com.example.thingsflowjava.api.ApiService;
 import com.example.thingsflowjava.api.Item;
+import com.example.thingsflowjava.data.DummyData;
 
 import java.util.List;
 
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
                         for(Item item:items) {
                             adapter.addItem(item);
+                            DummyData.dummyList.add(item);
                             Log.d("asd", "done");
                         }
                     }
